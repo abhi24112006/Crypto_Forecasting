@@ -1,9 +1,9 @@
-# Python
+﻿# Python
 __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environments
+# Virtual environment
 .venv/
 venv/
 env/
@@ -14,6 +14,10 @@ env/
 # Lightning
 lightning_logs/
 
+# Model checkpoints
+*.pth
+*.pt
+
 # IDE
 .vscode/
 .idea/
@@ -22,6 +26,16 @@ lightning_logs/
 .DS_Store
 Thumbs.db
 
+# Python cache
+.pytest_cache/
+
 # Temporary files
 *.tmp
 *.log
+
+# Allow project folder contents to be pushed
+!TFT_Nbeats/
+!TFT_Nbeats/**
+!TFT_Nbeats/**/*.ckpt
+!TFT_Nbeats/**/*.pth
+!TFT_Nbeats/**/*.pt
