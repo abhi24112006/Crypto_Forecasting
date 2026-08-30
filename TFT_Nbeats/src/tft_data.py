@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -10,7 +12,8 @@ from pytorch_forecasting import TimeSeriesDataSet
 # CONFIGURATION
 # ============================================================
 
-DATA_PATH = "data/engineered_data.csv"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_PATH = PROJECT_ROOT / "data" / "engineered_data.csv"
 
 LOOKBACK = 30
 

@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -25,7 +26,8 @@ from lightning.pytorch.callbacks import (
 # CONFIGURATION
 # ============================================================
 
-DATA_PATH = "data/engineered_data.csv"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_PATH = PROJECT_ROOT / "data" / "engineered_data.csv"
 
 LOOKBACK = 30
 
@@ -648,7 +650,7 @@ print(
 # ============================================================
 
 os.makedirs(
-    "results",
+    PROJECT_ROOT / "results",
     exist_ok=True
 )
 
@@ -662,8 +664,9 @@ results = pd.DataFrame({
 })
 
 
+results_path = PROJECT_ROOT / "results" / "tft_predictions.csv"
 results.to_csv(
-    "results/tft_predictions.csv",
+    results_path,
     index=False
 )
 
@@ -672,6 +675,4 @@ print(
     "\nPredictions saved to:"
 )
 
-print(
-    "results/tft_predictions.csv"
-)
+print(results_path)
