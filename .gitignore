@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 env/
@@ -14,10 +14,6 @@ env/
 # Lightning
 lightning_logs/
 
-# Model checkpoints
-*.pth
-*.pt
-
 # IDE
 .vscode/
 .idea/
@@ -25,9 +21,6 @@ lightning_logs/
 # OS
 .DS_Store
 Thumbs.db
-
-# Python cache
-.pytest_cache/
 
 # Temporary files
 *.tmp
