@@ -1,0 +1,13 @@
+Parameter,Value
+Model,Temporal Fusion Transformer
+Asset,Bitcoin
+Lookback,30
+Forecast Horizon,1
+Features,13
+Hidden Size,16
+Attention Heads,4
+Dropout,0.1
+Learning Rate,0.001
+Batch Size,64
+Maximum Epochs,30
+Early Stopping Patience,5
