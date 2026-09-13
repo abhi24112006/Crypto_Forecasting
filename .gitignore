@@ -5,6 +5,7 @@ __pycache__/
 
 # Virtual environment
 .venv/
+.venv312/
 venv/
 env/
 
