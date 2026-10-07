@@ -35,11 +35,11 @@ Thumbs.db
 *.log
 
 # Allow project folders to be pushed
-!TFT_Nbeats/
-!TFT_Nbeats/**
-!TFT_Nbeats/**/*.ckpt
-!TFT_Nbeats/**/*.pth
-!TFT_Nbeats/**/*.pt
+!TFT_NBEATS/
+!TFT_NBEATS/**
+!TFT_NBEATS/**/*.ckpt
+!TFT_NBEATS/**/*.pth
+!TFT_NBEATS/**/*.pt
 
 !LSTM_Light_GBM/
 !LSTM_Light_GBM/**
