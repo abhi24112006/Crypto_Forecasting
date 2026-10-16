@@ -1,0 +1,2 @@
+Model,Hidden_Size,Attention_Heads,Lookback,Lag_Features,MAE,RMSE,MAPE
+TFT,64,4,30,False,6797.775390625,8295.894888437293,15.679899

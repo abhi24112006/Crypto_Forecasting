@@ -1,19 +1,23 @@
-# Python
+﻿# Python
 __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environments
-venv/
+# Virtual environment
 .venv/
+.venv312/
+venv/
 env/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Environment / secrets
-.env
-.env.*
+# Lightning
+lightning_logs/
+
+# Model checkpoints
+*.pth
+*.pt
 
 # IDE
 .vscode/
@@ -26,23 +30,19 @@ Thumbs.db
 # Python cache
 .pytest_cache/
 
-# ML models / large files
-*.pkl
-*.joblib
-*.h5
-*.keras
-*.pt
-*.pth
-*.ckpt
-
-# Data
-*.csv
-*.parquet
-*.zip
-
-# Logs
+# Temporary files
+*.tmp
 *.log
 
-# Temporary files
-tmp/
-temp/
+# Allow project folders to be pushed
+!TFT_NBEATS/
+!TFT_NBEATS/**
+!TFT_NBEATS/**/*.ckpt
+!TFT_NBEATS/**/*.pth
+!TFT_NBEATS/**/*.pt
+
+!LSTM_Light_GBM/
+!LSTM_Light_GBM/**
+!LSTM_Light_GBM/**/*.ipynb
+!LSTM_Light_GBM/**/*.png
+!LSTM_Light_GBM/**/*.csv
