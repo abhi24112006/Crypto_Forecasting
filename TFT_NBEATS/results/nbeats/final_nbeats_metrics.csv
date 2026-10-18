@@ -1,0 +1,2 @@
+Model,Features,Lookback,Forecast_Horizon,Hidden_Size,Blocks,Layers_Per_Block,Batch_Size,Learning_Rate,Train_Observations,Test_Observations,Test_MAE,Test_RMSE,Test_MAPE
+Final Canonical N-BEATS,Close,30,1,128,4,4,64,0.001,2529,452,3457.0725,4245.7734,8.064899
