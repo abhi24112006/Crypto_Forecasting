@@ -34,6 +34,11 @@ Thumbs.db
 *.tmp
 *.log
 
+# Frontend build artifacts
+node_modules/
+dist/
+*.tsbuildinfo
+
 # Allow project folders to be pushed
 !TFT_NBEATS/
 !TFT_NBEATS/**
