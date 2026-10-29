@@ -1,0 +1,59 @@
+================================================================================
+FINAL MODEL COMPARISON: N-BEATS vs TFT FOR NEXT-DAY BTC CLOSE FORECASTING
+================================================================================
+
+Evaluation Dataset: data/engineered_data.csv
+Matching Evaluation Date Range: 2021-01-09 to 2022-10-16 (451 test samples)
+Target Variable: Next-day BTC Close price (USD)
+Naïve Baseline Scaling Denominator (Training Period MAE): 131.1236 USD
+Test-period Naïve Persistence MAE: 1423.2569 USD
+
+--------------------------------------------------------------------------------
+1. SIDE-BY-SIDE METRICS SUMMARY (Identical Target Dates, N = 451)
+--------------------------------------------------------------------------------
+Metric          | N-BEATS         | TFT             | Winner       | Criteria            
+--------------------------------------------------------------------------------
+MAE (USD)       | 3453.8854       | 6812.5616       | N-BEATS      | Lower is better     
+RMSE (USD)      | 4244.2252       | 8305.0866       | N-BEATS      | Lower is better     
+MAPE (%)        | 8.0562          | 15.7132         | N-BEATS      | Lower is better     
+R2 Score        | 0.8577          | 0.4550          | N-BEATS      | Higher is better    
+MASE            | 26.3407         | 51.9553         | N-BEATS      | Lower is better (< 1 beats naive)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+2. NAÏVE BASELINE & MASE ANALYSIS
+--------------------------------------------------------------------------------
+- Naïve baseline definition: 1-step persistence forecast (y_hat_t = y_{t-1}).
+- Training scaling denominator: 131.12 USD.
+- N-BEATS MASE: 26.3407 -> Beats Naïve Baseline? NO (MASE > 1.0).
+- TFT MASE:     51.9553 -> Beats Naïve Baseline? NO (MASE > 1.0).
+- Test-period direct relative ratio (MAE_model / MAE_naive_test):
+    * N-BEATS: 2.43x naive error
+    * TFT:     4.79x naive error
+  Both models have MASE significantly greater than 1, reflecting the well-known martingale / random walk
+  characteristic of high-volatility cryptocurrency daily prices, though N-BEATS is roughly 2x closer
+  to the baseline than TFT.
+
+--------------------------------------------------------------------------------
+3. NATIVE 452-SAMPLE BENCHMARK (As Originally Configured in Saved Checkpoint Scripts)
+--------------------------------------------------------------------------------
+N-BEATS (N=452, 2021-01-08 to 2022-10-16):
+  MAE: 3457.07 | RMSE: 4245.77 | MAPE: 8.06% | R2: 0.8573 | MASE: 26.3650
+TFT (N=452, 2021-01-08 to 2022-10-16):
+  MAE: 6797.78 | RMSE: 8295.90 | MAPE: 15.68% | R2: 0.4605 | MASE: 51.8425
+
+--------------------------------------------------------------------------------
+4. LIMITATIONS & ARCHITECTURAL COMPARISON NOTES
+--------------------------------------------------------------------------------
+1. Architecture & Capacity: The saved N-BEATS checkpoint is a 4-block, 4-layer MLP network (128 hidden)
+   specialized purely on univariate Close sequences. TFT is a complex multi-modal attention architecture
+   incorporating 13 exogenous technical indicators, which exhibited signs of overfitting / lag tracking
+   during the volatile 2021-2022 regime.
+2. Date Alignment Nuance: In the original final_tft.py script, predictions were indexed with the forecast
+   origin date (row date) while predicting the pre-shifted 'Target' column (next-day Close). In contrast,
+   nbeats_model.py labeled sequences with the target date. When aligned strictly to the exact calendar target
+   day (N=451), both models evaluate on identical BTC market prices, confirming N-BEATS superiority.
+3. Non-Stationarity & MASE Denominator: Because BTC traded at ~$700-$20,000 during the training period
+   (2013-2020) and surged to $20,000-$68,000 in the test period (2021-2022), the in-sample mean absolute difference
+   (131.12 USD) is naturally much smaller than the test-period daily swings (1423.26 USD), scaling up the MASE.
+================================================================================
